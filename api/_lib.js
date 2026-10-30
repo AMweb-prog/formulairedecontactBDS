@@ -13,18 +13,19 @@ function send(res, status, body, headers = {}) {
 }
 
 function config() {
-  const { SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, BDS_ADMIN_PASSWORD, SESSION_SECRET } = process.env;
-  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !BDS_ADMIN_PASSWORD || !SESSION_SECRET || SESSION_SECRET.length < 32) {
+  const { SUPABASE_URL, SUPABASE_SECRET_KEY, BDS_ADMIN_PASSWORD, SESSION_SECRET } = process.env;
+  if (!SUPABASE_URL || !SUPABASE_SECRET_KEY || !BDS_ADMIN_PASSWORD || !SESSION_SECRET || SESSION_SECRET.length < 32) {
     throw new Error('Configuration serveur manquante. Vérifiez les variables d’environnement Vercel.');
   }
-  return { url: SUPABASE_URL.replace(/\/$/, ''), key: SUPABASE_SERVICE_ROLE_KEY, password: BDS_ADMIN_PASSWORD, sessionSecret: SESSION_SECRET };
+  return { url: SUPABASE_URL.replace(/\/$/, ''), key: SUPABASE_SECRET_KEY, password: BDS_ADMIN_PASSWORD, sessionSecret: SESSION_SECRET };
 }
 
 async function database(path, options = {}) {
   const { url, key } = config();
+  const authHeaders = key.startsWith('eyJ') ? { Authorization: `Bearer ${key}` } : {};
   const response = await fetch(`${url}/rest/v1/${path}`, {
     ...options,
-    headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', ...(options.headers || {}) },
+    headers: { apikey: key, ...authHeaders, 'Content-Type': 'application/json', ...(options.headers || {}) },
   });
   const text = await response.text();
   let result;

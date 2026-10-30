@@ -6,17 +6,17 @@ Le frontend est statique; les routes du dossier `api/` sont des fonctions Vercel
 
 1. Créez un projet Supabase et choisissez une région dans l'UE.
 2. Dans **SQL Editor**, exécutez tout le fichier `supabase/schema.sql`.
-3. Dans les paramètres API du projet, récupérez l'URL du projet et la clé `service_role`.
-4. Gardez cette clé strictement côté serveur. Ne la mettez jamais dans le HTML, le JavaScript du navigateur, un dépôt Git ou une capture d'écran.
+3. Dans **Settings → API Keys**, récupérez l'URL du projet et la clé secrète `sb_secret_...`. Une ancienne clé `service_role` JWT fonctionne aussi.
+4. Gardez cette clé strictement côté serveur. Ne la mettez jamais dans le HTML, le JavaScript du navigateur, un dépôt Git ou une capture d'écran. La clé `sb_publishable_...` est publique et ne permet pas les opérations admin utilisées par l'application.
 
-La table `members` a RLS activé et aucune politique d'accès public. Seules les fonctions serveur utilisent la clé `service_role`. Un index unique sur l'e-mail empêche les doublons même si deux formulaires sont envoyés presque simultanément. La fonction SQL limite les tentatives de connexion admin à huit par adresse réseau sur quinze minutes, et les envois de formulaire à 120 par adresse réseau par heure. L'identifiant réseau est haché avant stockage et les anciennes limites sont nettoyées. Ajustez la limite d'inscription si le campus utilise une adresse IP partagée par de nombreux étudiants.
+La table `members` a RLS activé et aucune politique d'accès public. Seules les fonctions serveur utilisent la clé secrète configurée côté serveur. Un index unique sur l'e-mail empêche les doublons même si deux formulaires sont envoyés presque simultanément. La fonction SQL limite les tentatives de connexion admin à huit par adresse réseau sur quinze minutes, et les envois de formulaire à 120 par adresse réseau par heure. L'identifiant réseau est haché avant stockage et les anciennes limites sont nettoyées. Ajustez la limite d'inscription si le campus utilise une adresse IP partagée par de nombreux étudiants.
 
 ## 2. Configurer les secrets Vercel
 
 Importez ce dépôt comme projet Vercel, en gardant la racine du projet par défaut. Dans **Settings → Environment Variables**, créez ces variables pour **Production** :
 
 - `SUPABASE_URL`: URL du projet Supabase.
-- `SUPABASE_SERVICE_ROLE_KEY`: clé secrète `service_role` (jamais `NEXT_PUBLIC_*`).
+- `SUPABASE_SECRET_KEY`: clé secrète `sb_secret_...` (recommandée) ou ancienne clé JWT `service_role` (jamais `NEXT_PUBLIC_*`).
 - `BDS_ADMIN_PASSWORD`: nouveau mot de passe admin aléatoire. Le mot de passe affiché précédemment dans une capture d'écran doit être remplacé.
 - `SESSION_SECRET`: secret aléatoire d'au moins 32 caractères, utilisé pour signer les cookies admin.
 
@@ -43,5 +43,6 @@ La base SQLite locale contient actuellement une inscription. Elle est exclue du 
 ## 5. Ce qu'il reste à faire dans les comptes
 
 La base doit être créée dans le compte Supabase du club et reliée au projet Vercel du club. Ce dépôt ne contient volontairement aucune clé d'accès; le propriétaire du compte saisit les clés dans les paramètres sécurisés Vercel.
+
 
 
