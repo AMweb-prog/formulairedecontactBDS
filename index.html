@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071326"><meta name="description" content="Inscription au Bureau des Sports EST Salé — année universitaire 2026/2027.">
+  <title>Inscription — Club des Sports EST Salé</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="theme.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="index.html"><img src="assets/bds-logo.png" alt="Bureau des Sports EST Salé"><span>EST SALÉ <i>·</i> BDS</span></a>
+    <a class="admin-link" href="admin.html"><span class="lock">⌑</span> Espace administrateur <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="page-shell">
+    <section class="intro">
+      <div class="eyebrow"><span class="live-dot"></span> CAMPUS · SPORT · COMMUNAUTÉ</div>
+      <h1>INSCRIPTION DES MEMBRES<br><span>DU CLUB DES SPORTS</span></h1>
+      <p class="year">ANNÉE UNIVERSITAIRE <b>2026/2027</b></p>
+      <p class="tagline">Rejoignez notre club et participez à des événements sportifs<br class="desktop"> au sein de notre communauté étudiante.</p>
+      <div class="logo-row"><div class="logo-card"><img src="assets/bds-logo.png" alt="Logo Bureau des Sports EST Salé"></div><div class="logo-divider"></div><div class="logo-card avenir"><img src="assets/avenir-logo.png" alt="Logo Espace Avenir"></div><span class="logo-caption">NOS PARTENAIRES DE CAMPUS</span></div>
+      <div class="side-note"><span>01</span> UNE ANNÉE POUR BOUGER ENSEMBLE</div>
+    </section>
+    <section class="form-card">
+      <div class="card-heading"><div><span class="step-label">FORMULAIRE D’ADHÉSION <b>· 2026/27</b></span><h2>Votre profil</h2></div><div class="step-count">01 <span>/ 01</span></div></div>
+      <div id="form-message" class="notice hidden" role="status"></div>
+      <form id="registration-form">
+        <div class="field-grid">
+          <label class="field"><span>Nom</span><input name="lastName" autocomplete="family-name" placeholder="Votre nom" required maxlength="80"></label>
+          <label class="field"><span>Prénom</span><input name="firstName" autocomplete="given-name" placeholder="Votre prénom" required maxlength="80"></label>
+          <label class="field"><span>Filière</span><input name="program" placeholder="Ex. Génie informatique" required maxlength="120"></label>
+          <label class="field"><span>Adresse e-mail</span><input name="email" type="email" autocomplete="email" placeholder="nom@exemple.com" required maxlength="160"></label>
+          <label class="field"><span>Numéro de téléphone</span><input name="phone" type="tel" autocomplete="tel" placeholder="+212 6 00 00 00 00" required maxlength="30"></label>
+          <label class="field"><span>Niveau d’études</span><select name="level" required><option value="" disabled selected>Choisir votre niveau</option><option>1ère année</option><option>2ème année</option><option>Bachelor</option></select></label>
+        </div>
+        <fieldset class="sports-field" required><legend>Quel(s) sport(s) vous intéressent ? <small>Choisissez au moins un sport · plusieurs choix possibles</small></legend><div class="sports-grid">
+          <label class="sport"><input type="checkbox" name="sports" value="Football"><span>⚽</span>Football</label><label class="sport"><input type="checkbox" name="sports" value="Basketball"><span>🏀</span>Basketball</label><label class="sport"><input type="checkbox" name="sports" value="Volleyball"><span>🏐</span>Volleyball</label><label class="sport"><input type="checkbox" name="sports" value="Handball"><span>🤾</span>Handball</label><label class="sport"><input type="checkbox" name="sports" value="Athlétisme"><span>🏃</span>Athlétisme</label><label class="sport"><input type="checkbox" name="sports" value="Autre"><span>✳</span>Autre</label>
+        </div></fieldset>
+        <section class="privacy"><div class="privacy-icon">◈</div><div><h3>Pourquoi ces informations ?</h3><p>Votre nom, votre filière, votre e-mail, votre numéro de téléphone et les autres informations fournies servent à gérer les adhésions du Club des Sports BDS pour 2026/2027 et à vous contacter au sujet des activités du club.</p><p>Ces données ne sont pas affichées publiquement ni vendues. Elles sont hébergées pour le fonctionnement du service par Vercel et Supabase, avec la base du club configurée en région UE. L’accès de gestion est réservé aux membres autorisés du bureau. Pour les corriger ou les faire supprimer, adressez-vous au bureau du club.</p></div></section>
+        <label class="consent"><input type="checkbox" name="consent" required><span class="checkmark"></span><span>J’ai lu la notice de confidentialité ci-dessus et j’accepte que mes informations soient utilisées pour gérer mon adhésion et me contacter au sujet des activités du club.</span></label>
+        <button class="submit" type="submit"><span>Envoyer ma demande</span><span class="arrow">↗</span></button>
+        <p class="form-footnote"><span>▣</span> Vos informations restent réservées au bureau du club.</p>
+      </form>
+    </section>
+  </main>
+  <footer>CLUB DES SPORTS_ANNÉE UNIVERSITAIRE 2026/2027</footer>
+  <script src="api-app.js"></script>
+</body></html>
+
+

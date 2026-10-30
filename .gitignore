@@ -1,0 +1,14 @@
+# Local database and student records
+data/
+*.sqlite
+*.sqlite3
+*.db
+
+# Python artifacts and local credentials
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.vercel/
+node_modules/

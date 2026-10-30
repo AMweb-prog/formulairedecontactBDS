@@ -1,0 +1,11 @@
+# Do not upload local student records, local server, or local secrets.
+data/
+*.sqlite
+*.sqlite3
+*.db
+__pycache__/
+server.py
+start.ps1
+.env
+.env.*
+!.env.example
